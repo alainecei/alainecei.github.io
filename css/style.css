@@ -1,0 +1,909 @@
+/* ESTE RESET ESTÁ HECHO CON INTELIGENCIA ARTIFICIAL
+
+Le pedí a ChatGPT que me creara un reset completo, moderno y limpio, compatible con buenas prácticas actuales.
+
+Después, he realizado modificaciones para adaptarlo a mis necesidades y gustos. Al final he acabado cambiando bastantes propiedades, como las custom properties, margins y paddings personalizados, fuentes, etc.*/
+
+/* Establece box-sizing en todos los elementos. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Establece la font-size y las variables de colores personalizados. */
+:root {
+  font-size: 100%;
+  --color-primary: #b88ff9;
+  --color-background: #242424;
+  --color-secondary: #ebe8e8;
+  --color-text: #333232;
+  --color-text-light: #fff;
+  --color-accent: #b693c0;
+}
+
+/* Elimina márgenes y paddings por defecto. */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+/* Establece un tamaño de fuente base para los títulos. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Krona One", serif;
+}
+
+/* Estable un margen base inferior para un uso general. */
+h2 {
+  margin-bottom: 3.5rem;
+}
+
+h4,
+h6 {
+  margin-bottom: 1rem;
+}
+
+/* Quita list-style y padding de listas. */
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Normaliza enlaces. */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Imágenes y medios fluidos. */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Quita border y outline en botones e inputs. */
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  font: inherit;
+  background: none;
+  color: inherit;
+}
+
+/* Mejora del scroll en dispositivos touch. */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Define tipografía base y fondo claro. */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+}
+
+/* Establece un padding base para un uso general. */
+section {
+  padding: 2.5rem 0;
+}
+
+/* Propiedades para centrar el contenido en resoluciones altas. */
+.container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Elementos interactivos accesibles. */
+button {
+  cursor: pointer;
+}
+
+/* Formularios sin estilos de origen. */
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Tablas limpias. */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Evita quotes automáticos en blockquote y q. */
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: '';
+}
+
+/* Quita decoraciones de enlaces. */
+a {
+  text-decoration: none;
+}
+
+/* Elimina flechas en inputs numéricos (Chrome, Safari). */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Elimina flechas en inputs numéricos (Firefox). */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Desactiva subrayado automático en Safari iOS. */
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* A la hora de desarrollar esta página se tuvo en cuenta primero el diseño para los dispositivos móviles (mobile first).*/
+
+
+/* SECCIÓN HEADER
+
+Finalidad: Dar el estilo general al encabezado, navegación y redes sociales.
+
+Características de la sección:
+
+- El encabezado tiene un fondo oscuro y un texto claro con un tamaño mínimo y espaciado interno adecuado.
+
+- La barra de navegación es responsiva y se adapta a diferentes tamaños de pantalla y utiliza Flexbox para organizar los elementos de manera horizontal y con espaciado entre ellos.
+
+- La imagen del logotipo tiene un tamaño fijo y se adapta al diseño.
+
+- El menú de navegación está oculto en dispositivos móviles y se muestra en pantallas más grandes como tablet o desktop.
+
+- Los elementos del menú tienen un efecto de transformación que, al pasar el ratón por encima, hace que se agranden y cambien de color de blanco a morado.
+
+- Los elementos de redes sociales tienen un diseño similar al menú, con un efecto de transformación al pasar el ratón por encima que hace que cambien de color de blanco a morado. */
+
+.header {
+  background-color: var(--color-background);
+  color: var(--color-text-light);
+  min-height: 5rem;
+  padding: 2rem;
+}
+
+.header__nav {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo-img {
+  width: 80px;
+  height: 80px;
+}
+
+.header__menu {
+  display: none;
+}
+
+.header__menu-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.125rem;
+  /* 18px = 1.125rem */
+  color: var(--color-text-light);
+  cursor: pointer;
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.header__menu-item:hover {
+  color: var(--color-primary);
+  transform: scale(1.1);
+}
+
+.header__social {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.header__social-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.2rem;
+  color: var(--color-text-light);
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.header__social-item:hover {
+  color: var(--color-primary);
+}
+
+/* SECCIÓN HERO
+
+Finalidad: Dar el estilo general a la sección hero, que incluye un video de fondo y un "carrusel" de sliders.
+
+Características de la sección:
+
+- Tiene un video de fondo que ocupa toda la pantalla y se adapta a diferentes tamaños de pantalla, que además es fiel a los colores de la página.
+
+- El carrusel de sliders tiene un efecto de desvanecimiento y transición suave entre las diferentes diapositivas.
+
+- Cada diapositiva del carrusel tiene un texto centrado.
+
+- El título y el texto de la sección hero tienen un tamaño de fuente grande y son fácilmente legibles sobre el fondo del video. */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__bg-video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  object-fit: cover;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hero__carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  color: #fff;
+}
+
+.hero__slide--active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.hero__content {
+  max-width: 50rem;
+  /* 800px = 50rem */
+  animation: fadeIn 1s ease forwards;
+}
+
+.hero__title {
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.hero__text {
+  font-size: 1.5rem;
+  opacity: 0.85;
+}
+
+/* SECCIÓN ABOUT
+
+Finalidad: Dar el estilo general a la sección "Sobre mí", que incluye una imagen, un título y una breve biografía.
+
+Características de la sección:
+
+- Tiene un título que se destaca y es fácilmente legible sobre el fondo.
+
+- Incluye una imagen circular que se adapta al diseño y un efecto de sombra para darle profundidad. Además si pasas el cursor por encima, la imagen se agranda un poco.
+
+- Dispone un botón de llamada a la acción (CTA) que se destaca y tiene un efecto de transformación al pasar el ratón por encima.
+
+- Tiene un diseño responsivo que se adapta a diferentes tamaños de pantalla.
+
+- Respeta un espaciado adecuado entre los diferentes elementos para mejorar la legibilidad y la estética general.*/
+
+.about {
+  padding-top: 5rem;
+  width: 100%;
+  min-height: 43.75rem;
+  /* 700px = 43.75rem */
+  background-color: var(--color-background);
+}
+
+.about__content {
+  width: 100%;
+  max-width: 56.25rem;
+  /* 900px = 56.25rem */
+  margin: auto;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about__title {
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.about__bio {
+  font-size: 1.125rem;
+  color: var(--color-text-light);
+  text-align: center;
+}
+
+.about__cta {
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.5s, transform 0.3s ease;
+}
+
+.about__cta:hover {
+  background-color: var(--color-text-light);
+  color: var(--color-text);
+  transform: scale(1.05);
+}
+
+.about__img--wrapper {
+  padding: 1rem;
+}
+
+.about__image {
+  width: 100%;
+  max-width: 25rem;
+  /* 400px = 25rem */
+  max-height: 25rem;
+  border-radius: 50%;
+  box-shadow: 0.1rem 0.1rem 1rem var(--color-secondary),
+    -0.1rem -0.1rem 1rem var(--color-accent);
+  object-fit: cover;
+  transition: transform 0.4s ease-in-out;
+}
+
+.about__image:hover {
+  transform: scale(1.1);
+}
+
+/* SECCIÓN SKILLS
+
+Finalidad: Dar el estilo general a la sección de habilidades, que incluye una cuadrícula de imágenes de herramientas que utilizo.
+
+Características de la sección:
+
+- Tiene un título que se destaca y es fácilmente legible sobre el fondo.
+
+- Incluye una cuadrícula de imágenes que representan las herramientas que utilizo.
+
+- La cuadrícula de imágenes tiene un efecto de transformación al pasar el ratón por encima, lo que mejora la experiencia del usuario.
+
+- Respeta un espaciado adecuado entre las imágenes para mejorar la legibilidad y la estética general.
+
+- Tiene un diseño responsivo que se adapta a diferentes tamaños de pantalla.*/
+
+.skills {
+  width: 100%;
+  background-color: var(--color-background);
+}
+
+.skills__title {
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.skills__grid {
+  padding: 2rem;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3.5rem;
+}
+
+.skills__grid img {
+  transition: transform 0.3s ease-in-out;
+}
+
+.skills__grid img:hover {
+  transform: scale(1.2);
+}
+
+/* SECCIÓN SERVICES
+
+Finalidad: Dar el estilo general a la sección de servicios, que incluye un acordeón con diferentes bloques de contenido donde explico brévemente los servicios que ofrezco a los clientes.
+
+Características de la sección:
+
+- Tiene un título que se destaca y es fácilmente legible sobre el fondo.
+
+- Incluye un acordeón que permite al usuario expandir y contraer diferentes bloques de contenido.
+
+- Cada bloque de contenido tiene un subtítulo y un texto descriptivo.
+
+- El acordeón tiene un efecto de transformación al pasar el ratón por encima.
+
+- Respeta un espaciado adecuado entre los bloques de contenido para mejorar la legibilidad y la estética general.
+
+- Tiene un diseño responsivo que se adapta a diferentes tamaños de pantalla. */
+
+.services {
+  width: 100%;
+  min-height: 50rem;
+  /* 800px = 50rem */
+  background-color: var(--color-background);
+  gap: 2rem;
+  display: flex;
+  flex-flow: column wrap;
+  margin: auto;
+}
+
+.services__title {
+  color: var(--color-primary);
+  text-align: center;
+  position: relative;
+}
+
+.services__accordion {
+  border-radius: 20px;
+  margin: 0 auto;
+  background-color: var(--color-background);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.services__block {
+  background-color: var(--color-text-light);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 18px;
+  margin: 1rem;
+  padding: 1rem;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.services__subtitle {
+  background-color: var(--color-text-light);
+  font-family: "Montserrat", sans-serif;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 18px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.services__subtitle:hover {
+  background-color: #f0f0f0;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.services__content {
+  border-radius: 18px;
+  padding-left: 1em;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.7s ease-in-out;
+  font-size: 0.9em;
+}
+
+.services__block.open .services__content {
+  max-height: 10em;
+}
+
+/* SECCIÓN CONTACT
+
+Finalidad:  Dar el estilo general a la sección de contacto, que incluye un formulario de contacto y un video de fondo.
+
+Características de la sección:
+
+- Tiene un título que se destaca y es fácilmente legible sobre el fondo.
+
+- Incluye un formulario de contacto que permite al usuario enviar un mensaje.
+
+- El formulario de contacto tiene un diseño limpio y moderno, con campos de entrada y un botón de envío.
+
+- Los campos de entrada tienen un efecto de transformación al pasar el ratón por encima.
+
+- El botón de envío tiene un diseño limpio y moderno, con un efecto de transformación al pasar el ratón por encima.
+
+- Respeta un espaciado adecuado entre los diferentes elementos para mejorar la legibilidad y la estética general.
+
+- Tiene un diseño responsivo que se adapta a diferentes tamaños de pantalla.
+
+- El video de fondo ocupa toda la sección y se adapta a diferentes tamaños de pantalla. */
+
+.contact {
+  width: 100%;
+  position: relative;
+}
+
+.contact__bg-video {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bg-video-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bg-video-wrapper::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.contact__title {
+  color: var(--color-background);
+  text-align: center;
+}
+
+.contact__text {
+  color: var(--color-text);
+  margin-bottom: 4rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.contact__form {
+  max-width: 37.5rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0 1rem;
+}
+
+.contact__label {
+  font-size: 1.125rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.contact__input,
+.contact__textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--color-text);
+  border-radius: 15px;
+  font-size: 1rem;
+  color: var(--color-text);
+  background-color: var(--color-text-light);
+  font-family: "Montserrat", sans-serif;
+}
+
+.contact__button {
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background-color 0.5s, transform 0.3s ease;
+}
+
+.contact__button:hover {
+  background-color: var(--color-background);
+  transform: scale(1.05);
+}
+
+/* SECCIÓN FOOTER
+
+Finalidad: Dar el estilo general al pie de página, que incluye un texto de copyright, enlaces a redes sociales y un formulario de suscripción a mi newsletter.
+
+Características de la sección:
+
+- Incluye un texto de copyright que se destaca y es fácilmente legible sobre el fondo.
+
+- Incluye enlaces a redes sociales que tienen un diseño limpio y moderno, con un efecto de transformación al pasar el ratón por encima.
+
+- El formulario de suscripción a la newsletter tiene un diseño limpio y moderno, con campos de entrada y un botón de envío.
+
+- Los campos de entrada tienen un efecto de transformación al pasar el ratón por encima.
+
+- El botón de envío tiene un diseño limpio y moderno, con un efecto de transformación al pasar el ratón por encima.
+
+- Respeta un espaciado adecuado entre los diferentes elementos para mejorar la legibilidad y la estética general.
+
+- Tiene un diseño responsivo que se adapta a diferentes tamaños de pantalla.*/
+
+.footer {
+  min-height: 10vh;
+  background-color: var(--color-background);
+  color: var(--color-text-light);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.7rem;
+  text-align: center;
+}
+
+.footer__text {
+  font-size: 1.125rem;
+}
+
+.footer__social {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer__social-item {
+  font-size: 1.125rem;
+  color: var(--color-text-light);
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer__social-item:hover {
+  color: var(--color-primary);
+}
+
+.footer__newsletter {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--color-text-light);
+}
+
+.footer__email form {
+  display: flex;
+  gap: 0.7rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: "Montserrat", sans-serif;
+}
+
+.Email {
+  flex: 1;
+  min-width: 200px;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.Email:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.2);
+  outline: none;
+}
+
+.Button {
+  background-color: var(--color-primary);
+  color: #fff;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.5s, transform 0.3s ease;
+}
+
+.Button:hover {
+  background-color: var(--color-text-light);
+  color: var(--color-text);
+  transform: scale(1.05);
+}
+
+/* GO TO TOP BUTTON
+
+Finalidad: Dar el estilo general al botón de "Volver arriba", que permite al usuario volver rápidamente a la parte superior de la página.
+
+Características de la sección:
+
+- Tiene un diseño limpio y moderno, y hace uso de un color contrastado para destacar sobre el fondo.
+
+- El botón tiene un icono de una flecha que se destaca y es fácilmente legible sobre el fondo. */
+
+#goToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  border-radius: 40px;
+  transform: scale(1);
+  transition: transform 0.4s ease;
+}
+
+#goToTop:hover {
+  transform: scale(1.15);
+}
+
+#goToTop svg {
+  width: 40px;
+  height: 40px;
+  color: var(--color-primary);
+}
+
+/* MEDIA QUERIES
+
+Finalidad: Ajustar el diseño y la disposición de los elementos en diferentes tamaños de pantalla para mejorar la experiencia del usuario.
+
+Características de la sección:
+
+- Los estilos se aplican a diferentes tamaños de pantalla, comenzando desde dispositivos móviles y adaptándose a tabletas y pantallas grandes.
+
+- Incluyen cambios en el tamaño de fuente, espaciado, disposición de los elementos y visibilidad de ciertos elementos.
+
+- Aseguran que el diseño sea responsivo y se vea bien en diferentes dispositivos y resoluciones de pantalla.
+
+- Incluyen ajustes para el encabezado, la sección hero, el pie de página y otros elementos clave de la página. */
+
+@media (min-width: 768px) {
+  .about__img--wrapper {
+    padding: unset;
+  }
+
+  section {
+    padding: 5rem 0;
+  }
+
+  .header__menu {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .hero {
+    height: 90vh;
+  }
+
+  .hero__title {
+    font-size: 3rem;
+  }
+
+  .title__wrapper {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .title__wrapper h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    /* 20px = 1.25rem */
+    position: relative;
+  }
+
+  .title__wrapper h2::before,
+  .title__wrapper h2::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background: var(--color-primary);
+    opacity: 0.75;
+  }
+
+  .skills__grid {
+    padding: 5.5rem 5rem 0 5rem;
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .header {
+    padding: 2rem 5rem;
+  }
+
+  .hero {
+    height: 100vh;
+  }
+
+  .services__accordion {
+    max-width: 80%;
+  }
+
+  .footer {
+    min-height: 15vh;
+    padding: 2rem 5rem;
+  }
+}
+
+@media (min-width: 1600px) {
+  h2 {
+    font-size: 2rem;
+  }
+
+  .services__subtitle {
+    font-size: 20px;
+  }
+
+  .services__content {
+    font-size: 18px;
+  }
+
+  .footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
